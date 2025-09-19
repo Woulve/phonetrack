@@ -20,14 +20,16 @@
           "device_name": "Gerätename",
           "name": "Integrationsname",
           "max_gps_accuracy": "Maximale GPS-Genauigkeit",
-          "update_interval": "Aktualisierungsintervall (Sekunden)"
+          "update_interval": "Aktualisierungsintervall (Sekunden)",
+          "last_update_timeout": "Timeout für letzte Aktualisierung (Minuten)"
         },
         "data_description": {
           "url": "Vollständige PhoneTrack-API-URL einschließlich Token (z. B. https://&lt;serverurl&gt;/apps/phonetrack/api/getlastpositions/&lt;token&gt;).",
           "device_name": "Der Gerätename genau so, wie er in PhoneTrack angezeigt wird.",
           "name": "Der Anzeigename dieser Integration in Home Assistant.",
           "max_gps_accuracy": "Maximale GPS-Genauigkeit in Metern (Standard: 100). Updates mit schlechterer Genauigkeit werden ignoriert.",
-          "update_interval": "Wie oft PhoneTrack nach neuen Positionen abgefragt wird, in Sekunden (Standard: 60)."
+          "update_interval": "Wie oft PhoneTrack nach neuen Positionen abgefragt wird, in Sekunden (Standard: 60).",
+          "last_update_timeout": "Gerät als nicht verfügbar markieren nach dieser Anzahl von Minuten ohne Updates (Standard: 30)."
         }
       }
     }

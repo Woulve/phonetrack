@@ -1,4 +1,5 @@
 from typing import Any
+from datetime import timedelta
 
 from homeassistant.components.device_tracker.config_entry import TrackerEntity
 from homeassistant.components.device_tracker.const import SourceType
@@ -10,10 +11,15 @@ from homeassistant.helpers.update_coordinator import (
     CoordinatorEntity,
     DataUpdateCoordinator,
 )
-from homeassistant.util.dt import utc_from_timestamp, as_local
+from homeassistant.util.dt import utc_from_timestamp, as_local, utcnow
 from homeassistant.util import slugify
 
-from .const import CONF_DEVICE_NAME, CONF_MAX_GPS_ACCURACY, DOMAIN
+from .const import (
+    CONF_DEVICE_NAME,
+    CONF_LAST_UPDATE_TIMEOUT,
+    CONF_MAX_GPS_ACCURACY,
+    DOMAIN,
+)
 
 
 async def async_setup_entry(
@@ -25,11 +31,16 @@ async def async_setup_entry(
     coordinator = entry_data["coordinator"]
     device_name = entry.data[CONF_DEVICE_NAME]
     max_gps_accuracy = entry.data[CONF_MAX_GPS_ACCURACY]
+    last_update_timeout = entry.data[CONF_LAST_UPDATE_TIMEOUT]
 
     async_add_entities(
         [
             PhoneTrackDeviceTracker(
-                coordinator, device_name, entry.entry_id, max_gps_accuracy
+                coordinator,
+                device_name,
+                entry.entry_id,
+                max_gps_accuracy,
+                last_update_timeout,
             )
         ]
     )
@@ -46,11 +57,13 @@ class PhoneTrackDeviceTracker(CoordinatorEntity, TrackerEntity):
         device_name: str,
         entry_id: str,
         max_gps_accuracy: int,
+        last_update_timeout: int,
     ) -> None:
         super().__init__(coordinator)
         self._device_name = device_name
         self._entry_id = entry_id
         self._max_gps_accuracy = max_gps_accuracy
+        self._last_update_timeout = last_update_timeout
         self._attr_unique_id = slugify(f"{entry_id}_{self._device_name}")
 
     @property
@@ -73,6 +86,7 @@ class PhoneTrackDeviceTracker(CoordinatorEntity, TrackerEntity):
             self.coordinator.last_update_success
             and self._data is not None
             and self._is_accurate_enough()
+            and self._is_within_timeout()
         )
 
     @property
@@ -136,4 +150,19 @@ class PhoneTrackDeviceTracker(CoordinatorEntity, TrackerEntity):
             acc = float(acc)
             return 0 < acc <= self._max_gps_accuracy
         except (ValueError, TypeError):
+            return False
+
+    def _is_within_timeout(self) -> bool:
+        if not self._data:
+            return False
+
+        timestamp = self._data.get("timestamp")
+        if timestamp is None:
+            return False
+
+        try:
+            last_update = utc_from_timestamp(float(timestamp))
+            timeout_threshold = utcnow() - timedelta(minutes=self._last_update_timeout)
+            return last_update > timeout_threshold
+        except (ValueError, TypeError, OSError):
             return False

@@ -5,6 +5,7 @@ DOMAIN = "phonetrack"
 CONF_DEVICE_NAME = "device_name"
 CONF_MAX_GPS_ACCURACY = "max_gps_accuracy"
 CONF_UPDATE_INTERVAL = "update_interval"
+CONF_LAST_UPDATE_TIMEOUT = "last_update_timeout"
 
 
 def redact_url(url: str) -> str:

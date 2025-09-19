@@ -14,6 +14,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
 from .const import (
     CONF_DEVICE_NAME,
+    CONF_LAST_UPDATE_TIMEOUT,
     CONF_MAX_GPS_ACCURACY,
     CONF_UPDATE_INTERVAL,
     DOMAIN,
@@ -90,6 +91,7 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_NAME, default="PhoneTrack"): str,
                 vol.Required(CONF_MAX_GPS_ACCURACY, default=100): vol.Coerce(int),
                 vol.Required(CONF_UPDATE_INTERVAL, default=60): vol.Coerce(int),
+                vol.Required(CONF_LAST_UPDATE_TIMEOUT, default=30): vol.Coerce(int),
             }
         )
 
@@ -107,6 +109,10 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 ),
                 "update_interval": (
                     "How often to poll the PhoneTrack API (in seconds)."
+                ),
+                "last_update_timeout": (
+                    "Mark device as unavailable after this many minutes "
+                    "without updates."
                 ),
             },
         )
@@ -177,4 +183,5 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             CONF_NAME: data[CONF_NAME],
             CONF_MAX_GPS_ACCURACY: data[CONF_MAX_GPS_ACCURACY],
             CONF_UPDATE_INTERVAL: data[CONF_UPDATE_INTERVAL],
+            CONF_LAST_UPDATE_TIMEOUT: data[CONF_LAST_UPDATE_TIMEOUT],
         }

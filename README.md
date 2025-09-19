@@ -45,7 +45,8 @@ The integration is configured through the Home Assistant UI:
 | **Device Name** | Yes | - | Name of the device as reported by PhoneTrack |
 | **Integration Name** | Yes | PhoneTrack | Friendly name for this integration in Home Assistant |
 | **Max GPS Accuracy** | Yes | 100 | Maximum allowed GPS accuracy in meters. Updates with worse accuracy are ignored |
-| **Update Interval** | Yes | 60 | How often to poll the PhoneTrack API (in seconds) |`
+| **Update Interval** | Yes | 60 | How often to poll the PhoneTrack API (in seconds) |
+| **Last Update Timeout** | Yes | 30 | Mark device as unavailable after this many minutes without updates |
 
 ## Support
 

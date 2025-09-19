@@ -16,18 +16,20 @@
         "title": "Configurer PhoneTrack",
         "description": "Saisissez les informations API PhoneTrack pour suivre un appareil.",
         "data": {
-          "url": "URL de l’API",
-          "device_name": "Nom de l’appareil",
-          "name": "Nom de l’intégration",
+          "url": "URL de l'API",
+          "device_name": "Nom de l'appareil",
+          "name": "Nom de l'intégration",
           "max_gps_accuracy": "Précision GPS maximale",
-          "update_interval": "Intervalle de mise à jour (secondes)"
+          "update_interval": "Intervalle de mise à jour (secondes)",
+          "last_update_timeout": "Délai d'expiration de la dernière mise à jour (minutes)"
         },
         "data_description": {
           "url": "URL complète de l'API PhoneTrack incluant le jeton (ex. : https://&lt;serverurl&gt;/apps/phonetrack/api/getlastpositions/&lt;token&gt;).",
-          "device_name": "Nom de l’appareil exactement tel qu’il apparaît dans PhoneTrack.",
+          "device_name": "Nom de l'appareil exactement tel qu'il apparaît dans PhoneTrack.",
           "name": "Nom convivial affiché pour cette intégration dans Home Assistant.",
           "max_gps_accuracy": "Précision GPS maximale en mètres (par défaut : 100). Les mises à jour avec une moins bonne précision seront ignorées.",
-          "update_interval": "Fréquence d’interrogation de PhoneTrack pour de nouvelles positions, en secondes (par défaut : 60)."
+          "update_interval": "Fréquence d'interrogation de PhoneTrack pour de nouvelles positions, en secondes (par défaut : 60).",
+          "last_update_timeout": "Marquer l'appareil comme indisponible après ce nombre de minutes sans mises à jour (par défaut : 30)."
         }
       }
     }
