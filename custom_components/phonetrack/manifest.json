@@ -1,0 +1,12 @@
+{
+  "domain": "phonetrack",
+  "name": "PhoneTrack",
+  "codeowners": ["@woulve"],
+  "config_flow": true,
+  "documentation": "https://github.com/woulve/phonetrack",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/woulve/phonetrack/issues",
+  "requirements": ["aiohttp"],
+  "single_config_entry": false,
+  "version": "1.0.0"
+}

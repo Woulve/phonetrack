@@ -1,0 +1,35 @@
+{
+  "config": {
+    "abort": {
+      "already_configured": "Dieses PhoneTrack-Gerät ist bereits konfiguriert."
+    },
+    "error": {
+      "invalid_url": "Ungültiges URL-Format. Bitte geben Sie eine gültige HTTP/HTTPS-URL an.",
+      "invalid_phonetrack_url": "Die URL muss ein PhoneTrack 'getlastpositions' API-Endpunkt sein",
+      "invalid_device_name": "Gerätename darf nicht leer sein",
+      "cannot_connect": "Verbindung zur PhoneTrack-API nicht möglich. Bitte überprüfen Sie die URL und Netzwerkverbindung.",
+      "device_not_found": "Gerät in PhoneTrack nicht gefunden. Bitte überprüfen Sie den Gerätenamen.",
+      "unknown": "Unerwarteter Fehler während der Einrichtung aufgetreten"
+    },
+    "step": {
+      "user": {
+        "title": "PhoneTrack einrichten",
+        "description": "Geben Sie die API-Daten von PhoneTrack ein, um ein Gerät zu verfolgen.",
+        "data": {
+          "url": "API-URL",
+          "device_name": "Gerätename",
+          "name": "Integrationsname",
+          "max_gps_accuracy": "Maximale GPS-Genauigkeit",
+          "update_interval": "Aktualisierungsintervall (Sekunden)"
+        },
+        "data_description": {
+          "url": "Vollständige PhoneTrack-API-URL einschließlich Token (z. B. https://&lt;serverurl&gt;/apps/phonetrack/api/getlastpositions/&lt;token&gt;).",
+          "device_name": "Der Gerätename genau so, wie er in PhoneTrack angezeigt wird.",
+          "name": "Der Anzeigename dieser Integration in Home Assistant.",
+          "max_gps_accuracy": "Maximale GPS-Genauigkeit in Metern (Standard: 100). Updates mit schlechterer Genauigkeit werden ignoriert.",
+          "update_interval": "Wie oft PhoneTrack nach neuen Positionen abgefragt wird, in Sekunden (Standard: 60)."
+        }
+      }
+    }
+  }
+}
