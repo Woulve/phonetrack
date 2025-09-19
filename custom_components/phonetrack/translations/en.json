@@ -9,6 +9,7 @@
       "invalid_device_name": "Device name cannot be empty",
       "cannot_connect": "Cannot connect to PhoneTrack API. Please check the URL and network connection.",
       "device_not_found": "Device not found in PhoneTrack. Please check the device name.",
+      "invalid_timeout_configuration": "Timeout must be at least 2x the polling interval to prevent unexpected behavior.",
       "unknown": "Unexpected error occurred during setup"
     },
     "step": {

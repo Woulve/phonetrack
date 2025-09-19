@@ -44,6 +44,10 @@ class DeviceNotFound(HomeAssistantError):
     """Error to indicate device was not found in PhoneTrack."""
 
 
+class InvalidTimeoutConfiguration(HomeAssistantError):
+    """Error to indicate timeout is too short relative to polling interval."""
+
+
 def _normalize_url(url: str) -> str:
     return url.strip().rstrip("/")
 
@@ -71,6 +75,8 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 errors["base"] = "cannot_connect"
             except DeviceNotFound:
                 errors["base"] = "device_not_found"
+            except InvalidTimeoutConfiguration:
+                errors["base"] = "invalid_timeout_configuration"
             except Exception:
                 _LOGGER.exception("Unexpected exception during validation")
                 errors["base"] = "unknown"
@@ -129,6 +135,14 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
             )
         if not device_name:
             raise InvalidDeviceName("Device name cannot be empty")
+
+        update_interval_minutes = data[CONF_UPDATE_INTERVAL] / 60.0
+        timeout_minutes = data[CONF_LAST_UPDATE_TIMEOUT]
+        if timeout_minutes < (update_interval_minutes * 2):
+            raise InvalidTimeoutConfiguration(
+                f"Timeout ({timeout_minutes} min) must be at least 2x the polling "
+                f"interval ({update_interval_minutes:.1f} min)"
+            )
 
         session = async_get_clientsession(self.hass)
         try:

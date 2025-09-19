@@ -9,6 +9,7 @@
       "invalid_device_name": "Le nom de l'appareil ne peut pas être vide",
       "cannot_connect": "Impossible de se connecter à l'API PhoneTrack. Veuillez vérifier l'URL et la connexion réseau.",
       "device_not_found": "Appareil non trouvé dans PhoneTrack. Veuillez vérifier le nom de l'appareil.",
+      "invalid_timeout_configuration": "Le délai d'expiration doit être au moins 2 fois l'intervalle d'interrogation pour éviter un comportement inattendu.",
       "unknown": "Une erreur inattendue s'est produite lors de la configuration"
     },
     "step": {
