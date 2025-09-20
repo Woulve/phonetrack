@@ -51,8 +51,4 @@ The integration is configured through the Home Assistant UI:
 ## Support
 
 - **Documentation**: [PhoneTrack GitHub](https://github.com/woulve/phonetrack)
-- **Issues**: [Report Issues](https://github.com/woulve/phonetrack)
-
-## License
-
-This integration is provided as-is under the standard Home Assistant custom component terms.
+- **Issues**: [Report Issues](https://github.com/woulve/phonetrack/issues)
