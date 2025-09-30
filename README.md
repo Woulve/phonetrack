@@ -6,7 +6,14 @@ It is inspired by [homeassistant-phonetrack by j1nx](https://github.com/j1nx/hom
 ## Installation
 
 ### HACS Installation
-Coming soon to HACS.
+<br>
+Download the integration with:
+
+[![Open Phonetrack on Home Assistant Community Store (HACS).](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=woulve&repository=Phonetrack&category=frontend)
+
+Then set up from the integrations menu.
+
+<br>
 
 ### Manual Installation
 
