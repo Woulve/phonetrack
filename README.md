@@ -53,7 +53,11 @@ The integration is configured through the Home Assistant UI:
 | **Integration Name** | Yes | PhoneTrack | Friendly name for this integration in Home Assistant |
 | **Max GPS Accuracy** | Yes | 100 | Maximum allowed GPS accuracy in meters. Updates with worse accuracy are ignored |
 | **Update Interval** | Yes | 60 | How often to poll the PhoneTrack API (in seconds) |
-| **Last Update Timeout** | Yes | 30 | Mark device as unavailable after this many minutes without updates |
+| **Last Update Timeout** | Yes | 0 | Mark device as unavailable after this many minutes without updates. Set to 0 to disable (recommended for devices that only send updates when moving) |
+
+### Important Notes
+
+⚠️ **Last Update Timeout Warning**: The default value for "Last Update Timeout" is **0 (disabled)**. This is recommended when your PhoneTrack app is configured to send updates only when the device moves. If timeout is enabled with movement-based tracking, your device may incorrectly appear as unavailable when stationary. Only enable this timeout if your app sends updates at regular intervals regardless of movement.
 
 ## Support
 

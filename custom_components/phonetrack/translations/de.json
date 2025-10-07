@@ -22,7 +22,7 @@
           "name": "Integrationsname",
           "max_gps_accuracy": "Maximale GPS-Genauigkeit",
           "update_interval": "Aktualisierungsintervall (Sekunden)",
-          "last_update_timeout": "Timeout für letzte Aktualisierung (Minuten)"
+          "last_update_timeout": "Timeout für letzte Aktualisierung (Minuten, 0 zum Deaktivieren)"
         },
         "data_description": {
           "url": "Vollständige PhoneTrack-API-URL einschließlich Token (z. B. https://&lt;serverurl&gt;/apps/phonetrack/api/getlastpositions/&lt;token&gt;).",
@@ -30,7 +30,7 @@
           "name": "Der Anzeigename dieser Integration in Home Assistant.",
           "max_gps_accuracy": "Maximale GPS-Genauigkeit in Metern (Standard: 100). Updates mit schlechterer Genauigkeit werden ignoriert.",
           "update_interval": "Wie oft PhoneTrack nach neuen Positionen abgefragt wird, in Sekunden (Standard: 60).",
-          "last_update_timeout": "Gerät als nicht verfügbar markieren nach dieser Anzahl von Minuten ohne Updates (Standard: 30)."
+          "last_update_timeout": "Gerät als nicht verfügbar markieren nach dieser Anzahl von Minuten ohne Updates (Standard: 0 - deaktiviert). WARNUNG: Auf 0 (deaktiviert) setzen, wenn Ihre PhoneTrack-App nur Updates sendet, wenn sich das Gerät bewegt, andernfalls kann das Gerät fälschlicherweise als nicht verfügbar erscheinen, wenn es stillsteht. Nur aktivieren, wenn Ihre App in regelmäßigen Abständen Updates sendet."
         }
       }
     }

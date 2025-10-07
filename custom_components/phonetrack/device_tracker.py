@@ -153,6 +153,10 @@ class PhoneTrackDeviceTracker(CoordinatorEntity, TrackerEntity):
             return False
 
     def _is_within_timeout(self) -> bool:
+        # If timeout is disabled (0), always return True
+        if self._last_update_timeout == 0:
+            return True
+
         if not self._data:
             return False
 
