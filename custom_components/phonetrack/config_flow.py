@@ -97,7 +97,7 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
                 vol.Required(CONF_NAME, default="PhoneTrack"): str,
                 vol.Required(CONF_MAX_GPS_ACCURACY, default=100): vol.Coerce(int),
                 vol.Required(CONF_UPDATE_INTERVAL, default=60): vol.Coerce(int),
-                vol.Required(CONF_LAST_UPDATE_TIMEOUT, default=30): vol.Coerce(int),
+                vol.Required(CONF_LAST_UPDATE_TIMEOUT, default=0): vol.Coerce(int),
             }
         )
 
@@ -138,10 +138,10 @@ class PhoneTrackConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
 
         update_interval_minutes = data[CONF_UPDATE_INTERVAL] / 60.0
         timeout_minutes = data[CONF_LAST_UPDATE_TIMEOUT]
-        if timeout_minutes < (update_interval_minutes * 2):
+        if timeout_minutes > 0 and timeout_minutes < (update_interval_minutes * 2):
             raise InvalidTimeoutConfiguration(
                 f"Timeout ({timeout_minutes} min) must be at least 2x the polling "
-                f"interval ({update_interval_minutes:.1f} min)"
+                f"interval ({update_interval_minutes:.1f} min), or set to 0 to disable"
             )
 
         session = async_get_clientsession(self.hass)
